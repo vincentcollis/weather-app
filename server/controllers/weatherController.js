@@ -3,8 +3,16 @@ const weatherController = {};
 weatherController.getLongitudeAndLatitude = async (req, res, next) => {
   // handle logic for getting coordinates from Google API
   const API_KEY = process.env.GOOGLE_APIKEY;
-  const { city, state } = req.query;
-  const URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state}&key=${API_KEY}`;
+
+  // ***** Uncomment the desired Query format to be used. ONLY UNCOMMENT ONE
+
+  //QUERY BASED ON City, State formate example New York, NY
+  // const { city, state } = req.query;
+  // const URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${city},+${state}&key=${API_KEY}`;
+
+  //QUERY BASED ON ZIP CODE formate example 10034
+  const { zip } = req.query;
+  const URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&key=${API_KEY}`;
 
   try {
     const response = await fetch(URL);
