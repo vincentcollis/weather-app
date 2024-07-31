@@ -12,10 +12,17 @@ router.get('/ping', (req, res) => {
   return res.status(200).json('pong');
 });
 
-router.get('/', weatherController.getLongitudeAndLatitude, (req, res) => {
-  return res.status(200).json();
-});
-
-// weatherController.getForcast,
+router.get(
+  '/',
+  weatherController.getLongitudeAndLatitude,
+  weatherController.getGridEndPoints,
+  weatherController.getForcast,
+  (req, res) => {
+    return res.status(200).json({
+      temperature: res.locals.temperature,
+      shortForecast: res.locals.shortForecast,
+    });
+  }
+);
 
 export default router;
