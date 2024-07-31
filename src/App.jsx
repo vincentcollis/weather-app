@@ -1,51 +1,55 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import LocationBox from './components/LocationBox'
+import './App.css';
+// import "../components.css"
 
-import Form from './components/form'
-import Background from './components/background'
+function App (props){
+    const [locationInputBoxState ,setlocationInputBoxState]= useState('')
+    
+    const [appBackgroundState, setappBackgroundState] = useState('')
 
-function App() {
 
-  
+    function backgroundHandler(locationBoxInput){
+        setlocationInputBoxState(locationBoxInput)
+    }
 
-  return (
-    <>
-      <Background/>
-    </>
-  )
+    async function getData(URL){
+        try{
+            const response = await fetch(URL)
+            if(!response.ok){
+                return console.log('Not valid zipcode')
+            }
+            const data = await response.json()
+            console.log(data)
+
+            if(data.temperature > 80){
+                console.log("its hot")
+                setappBackgroundState('blue')
+            }
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    // run function depending on state change of LocationBox
+    useEffect(()=>{
+        const ZIP = locationInputBoxState
+        const URL = `http://localhost:3000/api/?zip=${ZIP}`
+
+        // if users input box has 5 charecters, send fetch request
+        if(locationInputBoxState.length === 5){
+            getData(URL)
+        }
+    },[locationInputBoxState])
+
+    return(
+        <div id="root">
+            <LocationBox 
+            id={appBackgroundState}
+            backgroundHandler={backgroundHandler} 
+            locationBoxInput = {locationInputBoxState} />
+        </div>
+    )
 }
 
 export default App
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vitejs.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App

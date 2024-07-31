@@ -23,15 +23,6 @@ weatherController.getLongitudeAndLatitude = async (req, res, next) => {
 
     res.locals.latitude = data.results[0].geometry.location.lat;
     res.locals.longitude = data.results[0].geometry.location.lng;
-
-    // console.log(data.results[0].geometry.location);
-
-    // console.log(
-    //   'LONGDITUDE: ',
-    //   res.locals.latitude,
-    //   'LADITUDE: ',
-    //   res.locals.longitude
-    // );
   } catch (error) {
     console.log('ERROR(weatherController.getLongitudeAndLatitude) :', error);
     return next({

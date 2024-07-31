@@ -8,7 +8,7 @@ const PORT = 8080;
 
 import cors from 'cors';
 const corsOptions = {
-  origin: ['http://localhost:5173/'],
+  origin: ['http://localhost:3000/'],
 };
 
 app.use(cors(corsOptions));
