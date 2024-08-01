@@ -1,22 +1,22 @@
-import React, {useState} from "react"
-import "../App.css"
+import React from "react";
+import "../App.css";
 
-function WeatherInformation (props){
+function WeatherInformation(props) {
+  const { temperature, shortForecast } = props.weather;
 
-const {temperature,shortForecast} = props.weather
-
-    return(
-        <>
-        <div id = "weatherInformationContainer">
-            <div id="temperature">
-            {temperature}&deg;
-            </div>
-            <div id="shortForecast">
-             {shortForecast}
-            </div>
+  return (
+    <>
+      <div id="weatherInformationContainer">
+        <div id="temperature">
+          {temperature}
+          {temperature !== "" && " °"}
         </div>
-        </>
-    )
+        <div id="shortForecast">
+          {shortForecast}
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default WeatherInformation
+export default WeatherInformation;
