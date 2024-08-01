@@ -1,32 +1,43 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: black;
-  background-color: white;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
+/* Style for the input box */
 .locationBoxInputBox {
   margin-left: 5px;
+  color: black; /* Text color */
+  caret-color: black; /* Cursor color */
 }
 
+/* Style for the red background state */
 #red {
   background-color: red;
   max-width: 1280px;
 }
 
-#root {
-  margin: 0 auto;
-  padding: 2rem;
+/* Style for the main container to center children */
+#mainContainer {
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Align items horizontally */
+  background-color: antiquewhite;
 }
 
-.locationBoxInputBox{
-  margin-left: 5px;
+/* Style for the logo */
+#logo {
+  align-content: center;
+  justify-content: center;
 }
+
+/* Style for the input box header */
+#inputBoxHeader {
+  font-family: bungee, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+}
+
+/* +++++++++++++++++++++ */
+/* +++++++++++++++++++++ */
+/* +++++++++++++++++++++ */
+
