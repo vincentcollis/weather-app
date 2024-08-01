@@ -12,7 +12,7 @@
 }
 
 /* Style for the main container to center children */
-#mainContainer {
+#mainContainer, #mainContainerSunny, #mainContainerRainy, #mainContainerSnowy {
   height: 100vh; /* Full viewport height */
   width: 100vw;
   text-align: center;
@@ -20,7 +20,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; /* Align items horizontally */
-  background-color: antiquewhite;
+  position: relative;
+}
+
+#mainContainerRainy .raindrop,
+#mainContainerSnowy .snowflake,
+#mainContainerSunny .ray {
+  position: absolute;
 }
 
 /* Style for the logo */
@@ -37,7 +43,145 @@
   font-size: 40px;
 }
 
-/* +++++++++++++++++++++ */
-/* +++++++++++++++++++++ */
-/* +++++++++++++++++++++ */
+.content {
+  z-index: 1;
+  position: relative;
+}
 
+/* +++++++++++++++++++++ */
+/* Main container with raining background */
+#mainContainerRainy {
+  background: linear-gradient(to bottom, #87CEEB, #4682B4); /* Sky blue to steel blue gradient */
+  overflow: hidden;
+}
+
+/* Raindrop styles */
+.raindrop {
+  position: absolute;
+  top: -10%;
+  width: 4px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  animation: fall 100s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* +++++++++++++++++++++ */
+/* Main container with snowing background */
+#mainContainerSnowy {
+  background: linear-gradient(to bottom, #B0E0E6, #FFFFFF); /* Light blue to white gradient */
+  overflow: hidden;
+}
+
+/* Snowflake styles */
+.snowflake {
+  position: absolute;
+  top: -10%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: fall 5s linear infinite, sway 2s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Generate multiple snowflakes */
+.snowflake:nth-child(1) { left: 10%; animation-duration: 6s; }
+.snowflake:nth-child(2) { left: 20%; animation-duration: 4s; }
+.snowflake:nth-child(3) { left: 30%; animation-duration: 5s; }
+.snowflake:nth-child(4) { left: 40%; animation-duration: 7s; }
+.snowflake:nth-child(5) { left: 50%; animation-duration: 3s; }
+.snowflake:nth-child(6) { left: 60%; animation-duration: 6s; }
+.snowflake:nth-child(7) { left: 70%; animation-duration: 5s; }
+.snowflake:nth-child(8) { left: 80%; animation-duration: 4s; }
+.snowflake:nth-child(9) { left: 90%; animation-duration: 6s; }
+.snowflake:nth-child(10) { left: 100%; animation-duration: 7s; }
+
+/* +++++++++++++++++++++ */
+/* Main container with sunny background */
+#mainContainerSunny {
+  background: linear-gradient(to bottom, #87CEEB, #FFD700); /* Sky blue to gold gradient */
+  overflow: hidden;
+}
+
+/* Sun styles */
+.sun {
+  top: 5%; /* Adjust to position the sun near the top */
+  right: 5%; /* Adjust to position the sun near the right */
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.7);
+  animation: moveSun 10s linear infinite;
+}
+
+/* Sun rays */
+.sun .ray {
+  width: 200px;
+  height: 20px;
+  background: linear-gradient(to right, #FFD700, transparent);
+  border-radius: 10px;
+  opacity: 0.8;
+  animation: spinRays 5s linear infinite;
+}
+
+.sun .ray:nth-child(1) { transform: rotate(0deg) translate(100px); }
+.sun .ray:nth-child(2) { transform: rotate(45deg) translate(100px); }
+.sun .ray:nth-child(3) { transform: rotate(90deg) translate(100px); }
+.sun .ray:nth-child(4) { transform: rotate(135deg) translate(100px); }
+.sun .ray:nth-child(5) { transform: rotate(180deg) translate(100px); }
+.sun .ray:nth-child(6) { transform: rotate(225deg) translate(100px); }
+.sun .ray:nth-child(7) { transform: rotate(270deg) translate(100px); }
+.sun .ray:nth-child(8) { transform: rotate(315deg) translate(100px); }
+
+/* Keyframes for animations */
+@keyframes moveSun {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes spinRays {
+  0% { transform: rotate(0deg) translate(100px); }
+  100% { transform: rotate(360deg) translate(100px); }
+}
