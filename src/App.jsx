@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import LocationBox from './components/LocationBox';
+import WeatherInformation from "./components/WeatherInformation";
 
 function App(props) {
     const [locationInputBoxState, setlocationInputBoxState] = useState('');
     const [appBackgroundState, setappBackgroundState] = useState('normal');
+    const [weatherInformationState, setWeatherInformationState] = useState({
+        temperature:"",
+        shortForecast:""
+    })
 
     const weatherDivsArray = []
     const weatherContainerController = {
@@ -48,7 +53,13 @@ function App(props) {
                 return console.log('Not valid zipcode');
             }
             const data = await response.json();
-            console.log(data.shortForecast.toUpperCase());
+            const {temperature,shortForecast} = data
+            
+            setWeatherInformationState({
+                ...weatherInformationState,
+                temperature,
+                shortForecast
+            })
 
             if (data.shortForecast.includes("Sunny")) {
                 setappBackgroundState('sunny');
@@ -82,6 +93,9 @@ function App(props) {
                 id={appBackgroundState}
                 backgroundHandler={backgroundHandler}
                 locationBoxInput={locationInputBoxState}
+            />
+            <WeatherInformation
+                weather ={weatherInformationState}
             />
         </div>
     );

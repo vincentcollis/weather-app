@@ -5,11 +5,25 @@
   caret-color: black; /* Cursor color */
 }
 
-/* Style for the red background state */
-#red {
-  background-color: red;
-  max-width: 1280px;
+#weatherInformationContainer {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
 }
+
+#temperature {
+  font-size: 50px;
+  margin-right: 10px; /* Add some space between temperature and short forecast */
+}
+
+#shortForecast {
+  font-size: 20px;
+  width: 350px;
+  text-align: left;
+  line-height: 25px;
+}
+
+
+
 
 /* Style for the main container to center children */
 #mainContainer, #mainContainerSunny, #mainContainerRainy, #mainContainerSnowy {
